@@ -5,10 +5,9 @@
       state: present
     become: yes
   
-  
   - name: "add node repo"
     apt_repository:
-        repo: 'deb https://deb.nodesource.com/node_0.10 xenial main' 
+        repo: 'deb https://deb.nodesource.com/{{ nodeversion }} {{ nodeostype }} main' 
     become: yes 
 
   - name: "Install Node"

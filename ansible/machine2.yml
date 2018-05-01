@@ -1,8 +1,0 @@
----
-- hosts: m2
-  vars_files:
-    - vars/enviroment.yml
-  roles:
-    - role: HandyStuff
-    - role: Node
-    - role: mysoftware

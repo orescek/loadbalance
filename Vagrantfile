@@ -12,7 +12,6 @@ Vagrant.configure(2) do |config|
     ha.vm.box =  VAGARNT_DIST
     ha.vm.network "private_network", ip:"192.168.101.10"
     ha.vm.network "forwarded_port", guest: 8080, host: 8080, auto_correct: false
-    ha.vm.network "forwarded_port", guest: 3000, host: 3000 , auto_correct: false
     ha.vm.hostname = "ha" + DOMAIN
     ha.vm.provision "shell" do |s|
       s.path = "run.sh"
@@ -29,7 +28,6 @@ Vagrant.configure(2) do |config|
     
     m1.vm.box =  VAGARNT_DIST
     m1.vm.network "private_network", ip:"192.168.101.12"
-   # m1.vm.network "forwarded_port", guest: 3000, host: 3000 , auto_correct: false
     m1.vm.hostname = "m1" + DOMAIN
     m1.vm.provision "shell" do |s|
       s.path = "run.sh"
@@ -54,7 +52,7 @@ Vagrant.configure(2) do |config|
       
      m2.vm.provision "ansible" do |ansible|
       ansible.inventory_path="ansible/provision/inventory"
-      ansible.playbook = "ansible/machine2.yml"  
+      ansible.playbook = "ansible/machine.yml"  
      end
   end
 

@@ -1,5 +1,5 @@
 ---
-- hosts: m1
+- hosts: m1,m2
   vars_files:
     - vars/enviroment.yml
   roles:
