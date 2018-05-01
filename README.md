@@ -10,6 +10,6 @@ On MacOs High Sierra
 
 # What is about
 Two machines m1 and m2 that are identical, where runs simple node server
-There is nginx machine that loadbalance the two machines.
+There is haproxy machine that loadbalance the two machines.
 
 app is taken here: https://blog.risingstack.com/your-first-node-js-http-server/
