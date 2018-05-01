@@ -1,0 +1,18 @@
+---
+  - name: "put script on machine"
+    template:
+      src: index.js.j2
+      dest: /home/vagrant/index.js
+      owner: vagrant
+      group: vagrant
+  
+  - name: "check if running"
+    command: forever list
+    register: forever_list
+    changed_when: false
+  
+  - name: "start my app"
+    command: forever start /home/vagrant/index.js
+    when: forever_list.stdout.find('/home/vagrant/index.js') == -1
+
+    #we need to check if app is running

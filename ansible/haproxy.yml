@@ -1,0 +1,9 @@
+---
+- hosts: ha
+  vars_files:
+    - vars/enviroment.yml
+  roles:
+    - role: HandyStuff
+    - role: Haproxy
+  
+

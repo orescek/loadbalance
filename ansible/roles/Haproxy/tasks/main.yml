@@ -1,0 +1,19 @@
+---
+ - name: install haproxy
+   package: 
+    name: haproxy 
+    state: present
+   become: yes   
+
+ - name: "copy conf"
+   copy:
+    src: haproxy.cfg
+    dest: /etc/haproxy
+   become: yes
+
+ - name: start haproxy
+   service: 
+    name: haproxy 
+    state: restarted
+   become: yes
+

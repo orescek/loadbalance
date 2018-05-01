@@ -1,0 +1,19 @@
+---
+  - name: Update repository
+    import_tasks: update.yml # found out how to enable this with some parameter
+  - name: install common software
+    package:
+      name: "{{ item }}"
+      state: present
+    with_items:
+      - mc
+      - vim
+      - git
+      - curl 
+    become: yes
+
+  - name: Generate hosts file
+    template:
+      src: hosts.j2
+      dest: /etc/hosts
+    become: yes    
