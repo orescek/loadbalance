@@ -4,5 +4,8 @@
     - { name: "m1", long_name: "m1.vat.si", ip: "192.168.101.12"}
     - { name: "m2", long_name: "m2.vat.si", ip: "192.168.101.13"}
 
+  app_port: 3000
+  app_haproxy_port: 8080
+
   nodeversion: "node_0.10"
   nodeostype: "xenial" # need to resolve os type - will be done once

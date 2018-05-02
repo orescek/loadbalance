@@ -1,7 +1,5 @@
 ENV["LC_ALL"] = "en_US.UTF-8"
 
-# ----- Variables --------
-
 DOMAIN = ".vat.si"
 VAGARNT_DIST = "ubuntu/xenial64"
 
@@ -44,7 +42,6 @@ Vagrant.configure(2) do |config|
     
     m2.vm.box =  VAGARNT_DIST
     m2.vm.network "private_network", ip:"192.168.101.13"
-    #m2.vm.network "forwarded_port", guest: 3000, host: 3000 , auto_correct: false
     m2.vm.hostname = "m2" + DOMAIN
     m2.vm.provision "shell" do |s|
       s.path = "run.sh"

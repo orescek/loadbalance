@@ -6,9 +6,9 @@
    become: yes   
 
  - name: "copy conf"
-   copy:
-    src: haproxy.cfg
-    dest: /etc/haproxy
+   template:
+    src: haproxy.cfg.j2
+    dest: /etc/haproxy/haproxy.cfg
    become: yes
 
  - name: start haproxy

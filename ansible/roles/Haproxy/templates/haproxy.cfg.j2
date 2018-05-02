@@ -1,28 +1,8 @@
-#---------------------------------------------------------------------
-# Example configuration for a possible web application.  See the
-# full configuration options online.
-#
-#   http://haproxy.1wt.eu/download/1.4/doc/configuration.txt
-#
-#---------------------------------------------------------------------
+###########################################################################
+# This is managed with Ansible - local change will be lost with next run! #
+###########################################################################
 
-#---------------------------------------------------------------------
-# Global settings
-#---------------------------------------------------------------------
 global
-    # to have these messages end up in /var/log/haproxy.log you will
-    # need to:
-    #
-    # 1) configure syslog to accept network log events.  This is done
-    #    by adding the '-r' option to the SYSLOGD_OPTIONS in
-    #    /etc/sysconfig/syslog
-    #
-    # 2) configure local2 events to go to the /var/log/haproxy.log
-    #   file. A line like the following can be added to
-    #   /etc/sysconfig/syslog
-    #
-    #    local2.*                       /var/log/haproxy.log
-    #
     log         127.0.0.1 local2
 
     chroot      /var/lib/haproxy
@@ -59,12 +39,15 @@ defaults
 
 
 frontend localnodes
-    bind *:8080
+    bind *:{{ app_haproxy_port }} ## -> this is managed with ansible
     mode http
     default_backend app
 
 backend app
-   balance roundrobin
-   option forwardfor
-   server m1 m1:3000 check
-   server m2 m2:3000 check
+    balance roundrobin
+    option forwardfor
+{% for item in myhosts %}
+ {% if item.name != "ha" %}
+    server {{ item.name }} {{ item.name }}:{{ app_port }} check  ## -> this is managed with ansible
+ {% endif %}
+{% endfor %}
